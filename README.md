@@ -61,5 +61,5 @@ Notes:
 - You can change the theme settings from the file "rkllm_server_gradio.py", section "theme". For the theme parameters, you can use the Gradio Theme Builder, on https://www.gradio.app/guides/theming-guide⁠
 
 Credits:
-https://github.com/c0zaut/rkllm-gradio⁠
-https://github.com/fabiomatricardi/smolLM2-GradioChatbot⁠
+- https://github.com/c0zaut/rkllm-gradio⁠
+- https://github.com/fabiomatricardi/smolLM2-GradioChatbot⁠
