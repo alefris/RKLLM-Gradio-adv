@@ -46,7 +46,7 @@ Notes:
 LATEST UPDATES (branch:1.2.1):
 - Updated library librkllmrt.so to version 1.2.1
 - Updated ctypes_bindings.py and model_class.py to support library 1.2.1
-- Added configuration for several some Qwen-3 models and Gemma3-4B (downloaded from Rockchip repository, since all the Gemma-3 models on Huggingface allucinate)
+- Added configuration for several some Qwen-3 models and Gemma3-4B (downloaded from Rockchip repository, since all the Gemma-3 models on Huggingface behave strangely)
 - Added environment variables to control resources monitor style and update frequency. Those can be sent from your docker run or compose environment
 
 Notes:
