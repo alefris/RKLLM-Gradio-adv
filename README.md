@@ -52,7 +52,6 @@ LATEST UPDATES (branch:1.1.4_beta):
         ahz-r3v/DeepSeek-R1-Distill-Qwen-7B-rk3588-rkllm-1.1.4 (32,768 context length) --> model will load and work with 32K context length
         limcheekin/Qwen2.5-7B-Instruct-1M-rk3588-1.1.4 (1M context length) --> model will load and work with a reduced 50K context length, occupying ~ 26Gb RAM
 - More testing is needed: the library rkllm version 1.1.4 seems to have a context limit of 4096. Even if the model is able to load with 32K of 50K, it's not said that it will actually accept that many tokens.
-- The image containing all those changes has the tag "1.1.4_beta" (alefris/rkllm-gradio-adv:1.1.4_beta)
 
 Notes:
 - For the dark theme (which looks better than the light one), add "?__theme=dark" at the end of the URL you use, example: https://chatbot.mydomain.com/?__theme=dark⁠
