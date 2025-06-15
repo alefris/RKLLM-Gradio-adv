@@ -42,6 +42,13 @@ Notes:
 - RESMON_FREQUENCY sets the number of seconds for the Resource Monitor panel update frequency
 - The bind mount of /rknpu_load to /sys/kernel/debug/rknpu/load is needed to read the NPU Load values and show them in the Resource monitor. Without the mount, the NPU Load will always show 0.00
 - Your container needs Internet access in order to download the models configuration files from huggingface.co. Those files will be stored in your /models folder
+- Concerning model parameters, be aware of those constraints:
+
+| Parameter | Required | Description | Options |
+| :-------- | :------- | :---------- | :------ |
+| path	Required | Required | Path to RKLLM model folder |  |
+| max_new_tokens | Required | Max number of tokens to generate | Must be ≤ max_context_len |
+| max_context_len | Required | Maximum context size for the model | Must be ≤ model's max_context |
 
 LATEST UPDATES (branch:1.2.1):
 - Updated library librkllmrt.so to version 1.2.1
