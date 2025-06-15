@@ -46,7 +46,7 @@ Notes:
 
 | Parameter | Required | Description | Options |
 | :-------- | :------- | :---------- | :------ |
-| path	Required | Required | Path to RKLLM model folder |  |
+| path | Required | Path to RKLLM model folder |  |
 | max_new_tokens | Required | Max number of tokens to generate | Must be ≤ max_context_len |
 | max_context_len | Required | Maximum context size for the model | Must be ≤ model's max_context |
 
