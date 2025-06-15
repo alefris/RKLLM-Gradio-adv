@@ -9,7 +9,7 @@ Run with PYTHON:
 8) Open http://localhost:1212
 
 Run with DOCKER CONTAINER:
-1) Run the image (tag: 1.1.4_beta) with:
+1) Run the image (tag: 1.2.1) with:
 ```
 docker run --privileged -v /models:/app/models -v /sys/kernel/debug/rknpu/load:/rknpu_load:ro -e RESMON_STYLE=simple -e RESMON_FREQUENCY=2 -p 1212:1212 alefris/rkllm-gradio-adv:1.2.1
 ```
