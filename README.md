@@ -55,6 +55,7 @@ LATEST UPDATES (branch:1.2.1):
 - Updated ctypes_bindings.py and model_class.py to support library 1.2.1
 - Added configuration for several some Qwen-3 models and Gemma3-4B (downloaded from Rockchip repository, since all the Gemma-3 models on Huggingface behave strangely)
 - Added environment variables to control resources monitor style and update frequency. Those can be sent from your docker run or compose environment
+- Removed empty <think></think> tag when thinking models are used in non-thinking mode
 
 Notes:
 - For the dark theme (which looks better than the light one), add "?__theme=dark" at the end of the URL you use, example: https://chatbot.mydomain.com/?__theme=dark⁠
