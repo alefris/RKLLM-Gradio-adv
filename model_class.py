@@ -249,8 +249,8 @@ class RKLLMLoaderClass:
             while len(global_text) > 0:
                 response["content"] += global_text.pop(0)
 
-                #Strip thinking tags if /no_think has been set in the prompt (reason: even if /no_think has been set, most models will anyhow output an empty <think> </think> tag)
-                if "/no_think" in self.system_prompt:
+                #Strip thinking tags if /no_think has been set in the prompt or in input message (reason: even if /no_think has been set, most models will anyhow output an empty <think> </think> tag)
+                if ("/no_think" in self.system_prompt and not "/think" in message) or ("/think" in self.system_prompt and "/no_think" in message):
                   response["content"] = str(response["content"]).replace("<think>", " ")
                   response["content"] = str(response["content"]).replace("</think>", " ")
 
@@ -260,6 +260,7 @@ class RKLLMLoaderClass:
                 response["content"] = str(response["content"]).replace("<Output>", "\\<Output\\>")
                 response["content"] = str(response["content"]).replace("</Output>", "\\<\\/Output\\>")
                 time.sleep(0.005)
+
                 #Qwen-3
                 response["content"] = str(response["content"]).replace("<think>", "\\<Thought\\>")
                 response["content"] = str(response["content"]).replace("</think>", "\\<\\/Thought\\>")
