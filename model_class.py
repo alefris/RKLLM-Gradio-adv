@@ -248,6 +248,12 @@ class RKLLMLoaderClass:
         while not model_thread_finished:
             while len(global_text) > 0:
                 response["content"] += global_text.pop(0)
+
+                #Strip thinking tags if /no_think has been set in the prompt (reason: even if /no_think has been set, most models will anyhow output an empty <think> </think> tag)
+                if "/no_think" in self.system_prompt:
+                  response["content"] = str(response["content"]).replace("<think>", " ")
+                  response["content"] = str(response["content"]).replace("</think>", " ")
+
                 # Marco-o1
                 response["content"] = str(response["content"]).replace("<Thought>", "\\<Thought\\>")
                 response["content"] = str(response["content"]).replace("</Thought>", "\\<\\/Thought\\>")
@@ -257,6 +263,7 @@ class RKLLMLoaderClass:
                 #Qwen-3
                 response["content"] = str(response["content"]).replace("<think>", "\\<Thought\\>")
                 response["content"] = str(response["content"]).replace("</think>", "\\<\\/Thought\\>")
+
                 # Gradio automatically pushes the result returned by the yield statement when calling the then method
                 yield response
             model_thread.join(timeout=0.005)
