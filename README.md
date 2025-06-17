@@ -42,7 +42,7 @@ Notes:
 - RESMON_FREQUENCY sets the number of seconds for the Resource Monitor panel update frequency
 - The bind mount of /rknpu_load to /sys/kernel/debug/rknpu/load is needed to read the NPU Load values and show them in the Resource monitor. Without the mount, the NPU Load will always show 0.00
 - Your container needs Internet access in order to download the models configuration files from huggingface.co. Those files will be stored in subfolders of your /models folder
-- Concerning the model parameters, be aware of those:
+- Concerning the model parameters, be aware of those indications:
 
 | Parameter | Required | Description | Options |
 | :-------- | :------- | :---------- | :------ |
