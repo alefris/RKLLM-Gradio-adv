@@ -1,8 +1,8 @@
 Run with PYTHON:
 1) Pull this repository
 2) Create a /model folder on your fs, where to store the model files
-3) Download the LLM models from https://huggingface.co/c01zaut⁠ (already converted to the .rkllm format) or other huggingface repositories (search for rkllm or RK3588).
-4) If the model definition is not yet present in the file model_configs.py, update the model_configs dictionary in model_configs.py with the filename of the model and tweak the hyperparameters as recommended in the model card or how you see fit.
+3) Download the LLM files (extension .rkllm) from https://huggingface.co/c01zaut⁠ or other huggingface repositories (search for rkllm or RK3588). The files which will be recognized and loaded are the ones already listed in model_configs.py
+4) You can download additional or different model files but you would then need to update the model definition within the file model_configs.py accordingly. If you add a new model, along with the filename and st_model_id, define the hyperparameters as recommended in the model card
 5) Create a virtual Python environment with: python -m venv <environment_name>
 6) Start the environment with: source ./bin/activate
 7) Start the Graio app with: python rkllm_server_gradio.py
@@ -41,14 +41,19 @@ Notes:
 - RESMON_STYLE controls the layout of the Rseource Monitor panel and can be set to simple or full. Full will show more details, simple just the basic ones
 - RESMON_FREQUENCY sets the number of seconds for the Resource Monitor panel update frequency
 - The bind mount of /rknpu_load to /sys/kernel/debug/rknpu/load is needed to read the NPU Load values and show them in the Resource monitor. Without the mount, the NPU Load will always show 0.00
-- Your container needs Internet access in order to download the models configuration files from huggingface.co. Those files will be stored in your /models folder
-- Concerning model parameters, be aware of those constraints:
+- Your container needs Internet access in order to download the models configuration files from huggingface.co. Those files will be stored in subfolders of your /models folder
+- Concerning the model parameters, be aware of those s:
 
 | Parameter | Required | Description | Options |
 | :-------- | :------- | :---------- | :------ |
-| path | Required | Path to RKLLM model folder |  |
+| max_context_len | Required | Maximum context size for the model | Must be ≤ model's max_context. Mind that rkllm library 1.2.1 supports max 16384 tokens |
 | max_new_tokens | Required | Max number of tokens to generate | Must be ≤ max_context_len |
-| max_context_len | Required | Maximum context size for the model | Must be ≤ model's max_context |
+| temperature | Required | Sampling temperature, affecting the randomness of token selection | Should be between 0 and 2 |
+| top_k | Required | Top-K sampling parameter for token generation | Should be between 1 and 100 |
+| top_p | Required | Top-P (nucleus) sampling parameter | Should be between 0 and 1 |
+| repeat_penalty | Required | Penalty for repeating tokens in generation | Should be between 0 and 2 |
+| frequency_penalty | Required | Penalizes frequent tokens during generation | Should be between 0 and 2 |
+| presence_penalty | Required | Penalizes tokens based on their presence in the input | Set by default to 0 |
 
 LATEST UPDATES (branch:1.2.1):
 - Updated library librkllmrt.so to version 1.2.1
