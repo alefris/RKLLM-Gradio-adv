@@ -9,7 +9,7 @@ Run with PYTHON:
 8) Open http://localhost:1212
 
 Run with DOCKER CONTAINER:
-1) Run the image (tag: 1.2.1) with:
+Run the image (tag: 1.2.1) with:
 ```
 docker run --privileged -v /models:/app/models -v /sys/kernel/debug/rknpu/load:/rknpu_load:ro -e RESMON_STYLE=simple -e RESMON_FREQUENCY=2 -p 1212:1212 alefris/rkllm-gradio-adv:1.2.1
 ```
@@ -42,11 +42,11 @@ Notes:
 - RESMON_FREQUENCY sets the number of seconds for the Resource Monitor panel update frequency
 - The bind mount of /rknpu_load to /sys/kernel/debug/rknpu/load is needed to read the NPU Load values and show them in the Resource monitor. Without the mount, the NPU Load will always show 0.00
 - Your container needs Internet access in order to download the models configuration files from huggingface.co. Those files will be stored in subfolders of your /models folder
-- Concerning the model parameters, be aware of those s:
+- Concerning the model parameters, be aware of those:
 
 | Parameter | Required | Description | Options |
 | :-------- | :------- | :---------- | :------ |
-| max_context_len | Required | Maximum context size for the model | Must be ≤ model's max_context. Mind that rkllm library 1.2.1 supports max 16384 tokens |
+| max_context_len | Required | Maximum context size for the model | Must be ≤ model's max_context and in any case ≤ 16384 (constraint of rkllm library v1.2.1) |
 | max_new_tokens | Required | Max number of tokens to generate | Must be ≤ max_context_len |
 | temperature | Required | Sampling temperature, affecting the randomness of token selection | Should be between 0 and 2 |
 | top_k | Required | Top-K sampling parameter for token generation | Should be between 1 and 100 |
