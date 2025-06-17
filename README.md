@@ -63,7 +63,7 @@ LATEST UPDATES (branch:1.2.1):
 - Added environment variables to control resources monitor style and update frequency. Those can be sent from your docker run or compose environment
 - Removed empty \<think>\</think> tag when thinking models are used in non-thinking mode
 
-Notes:
+Abou the layout:
 - For the dark theme (which looks better than the light one), add "?__theme=dark" at the end of the URL you use, example: https://chatbot.mydomain.com/?__theme=dark⁠
 - You can change the theme settings from the file "rkllm_server_gradio.py", section "theme". For the theme parameters, you can use the Gradio Theme Builder, on https://www.gradio.app/guides/theming-guide⁠
 
