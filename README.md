@@ -8,9 +8,9 @@ Run with PYTHON:
 7) Start the Gradio app with: python rkllm_server_gradio.py
 8) Open http://localhost:1212
 
-Run with DOCKER CONTAINER:
+Run with DOCKER:
 
-1) Run the image (tag: 1.2.1) with:
+1) Start a container with the image (tag: 1.2.1):
 ```
 docker run --privileged -v /models:/app/models -v /sys/kernel/debug/rknpu/load:/rknpu_load:ro -e RESMON_STYLE=simple -e RESMON_FREQUENCY=2 -p 1212:1212 alefris/rkllm-gradio-adv:1.2.1
 ```
