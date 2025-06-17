@@ -5,7 +5,7 @@ Run with PYTHON:
 4) You can download additional or different model files but you would then need to update the model definition within the file model_configs.py accordingly. If you add a new model, along with the filename and st_model_id, define the hyperparameters as recommended in the model card
 5) Create a virtual Python environment with: python -m venv <environment_name>
 6) Start the environment with: source ./bin/activate
-7) Start the Graio app with: python rkllm_server_gradio.py
+7) Start the Gradio app with: python rkllm_server_gradio.py
 8) Open http://localhost:1212
 
 Run with DOCKER CONTAINER:
