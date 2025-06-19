@@ -271,25 +271,11 @@ if __name__ == "__main__":
 
                 model_dropdown.change(fn=initialize_model, inputs=model_dropdown, outputs=[max_tokens, temperature, freq_penalty, rep_penalty, max_conlen, top_k, top_p, sys_prompt, statusBox]).then(fn=lambda: gr.update(interactive=True), inputs=None, outputs=unload_button).then(fn=lambda: gr.update(interactive=True), inputs=None, outputs=rldbtn)
 
-                # KPIs
-                ttft_seconds = gr.Text(label='Time to First Token', value='\n', container=True, show_label=True)
-                inference_time = gr.Text(label='Inference Time', value='0 seconds', container=True, show_label=True)
-                speed = gr.Text(label='Generation Speed', value='0 t/s', container=True, show_label=True)
-                tokens_stats = gr.Text(label='Tokens Statistics', value='\n\n\n', container=True, show_label=True)
-                log_filename = gr.Text(label='Log Filename', value=LOGFILENAME, container=True, show_label=True)
-
-                #Create the reset button
-                reset_button = gr.Button("Reset Statistics and clear Chat with Statistics", variant="primary")
-
 
             # CHATBOT AREA
             with gr.Column(scale=3):
               with gr.Tabs():
                with gr.TabItem("Live Stream Chat (Seamless, no Statistics)"):
-                tokens_stats.value = "N/A"
-                ttft_seconds.value = "N/A"
-                speed.value = "N/A"
-                inference_time.value = "N/A"
                 txt2txt = gr.ChatInterface(fn=get_RKLLM_output, type="messages", stop_btn=False, save_history=True)
                 txt2txt.chatbot.height = "60vh"
                 txt2txt.chatbot.resizable = True
@@ -297,15 +283,32 @@ if __name__ == "__main__":
                 txt2txt.saved_conversations.storage_key = "_saved_conversations"
 
                with gr.TabItem("Chat with Statistics (no Streaming)"):
+                 with gr.Row():
+                   with gr.Column(scale=1):
+                    # KPIs
+                     ttft_seconds = gr.Text(label='Time to First Token', value='\n', container=True, show_label=True)
+                     inference_time = gr.Text(label='Inference Time', value='0 seconds', container=True, show_label=True)
+                     speed = gr.Text(label='Generation Speed', value='0 t/s', container=True, show_label=True)
+                     tokens_stats = gr.Text(label='Tokens Statistics', value='\n\n\n', container=True, show_label=True)
+                     log_filename = gr.Text(label='Log Filename', value=LOGFILENAME, container=True, show_label=True)
 
-                chatbot = gr.Chatbot(type="messages", show_copy_button=True, avatar_images=['user.png', 'bot.png'], height=650, layout='bubble', resizable=True)
-                msg = gr.Textbox(lines=1, placeholder="Type your message here...", container=False, show_label=False)
-                clear = gr.ClearButton([msg, chatbot])
+                     tokens_stats.value = "N/A"
+                     ttft_seconds.value = "N/A"
+                     speed.value = "N/A"
+                     inference_time.value = "N/A"
 
-                #define the reset button click to Reset the individual statistics variables and clear chatbot history
-                reset_button.click(fn=reset_statistics, inputs=[chatbot], outputs=[chatbot, ttft_seconds, inference_time, speed, tokens_stats])
+                     #Create the reset button
+                     reset_button = gr.Button("Reset Statistics and clear Chat with Statistics", variant="primary")
 
-                def chat(message, history, temperature, freq_penalty, rep_penalty, max_tokens, max_conlen, top_k, top_p, sys_prompt):
+                   with gr.Column(scale=3):
+                     chatbot = gr.Chatbot(type="messages", show_copy_button=True, avatar_images=['user.png', 'bot.png'], height=650, layout='bubble', resizable=True)
+                     msg = gr.Textbox(lines=1, placeholder="Type your message here...", container=False, show_label=False)
+                     clear = gr.ClearButton([msg, chatbot])
+
+                     #define the reset button click to Reset the individual statistics variables and clear chatbot history
+                     reset_button.click(fn=reset_statistics, inputs=[chatbot], outputs=[chatbot, ttft_seconds, inference_time, speed, tokens_stats])
+
+               def chat(message, history, temperature, freq_penalty, rep_penalty, max_tokens, max_conlen, top_k, top_p, sys_prompt):
                     """
                     Get as an input the chatbot gradio type and the conversation history with hyperparameters
                     message -> str coming from the gradio textbox
@@ -395,8 +398,8 @@ TOTAL Tokens: {totaltokens}
                     tosave = f'{datetime.datetime.now()}\nUSER > {message}\n BOT > {history[-1]["content"]}\n{stats}\n\n'
                     writehistory(LOGFILENAME, tosave)
 
-                clear.click(lambda: ([], ""), None, [chatbot, msg])
-                msg.submit(chat, [msg, chatbot, temperature, freq_penalty, rep_penalty, max_tokens, max_conlen, top_k, top_p, sys_prompt], [chatbot, msg, ttft_seconds, inference_time, speed, tokens_stats])
+               clear.click(lambda: ([], ""), None, [chatbot, msg])
+               msg.submit(chat, [msg, chatbot, temperature, freq_penalty, rep_penalty, max_tokens, max_conlen, top_k, top_p, sys_prompt], [chatbot, msg, ttft_seconds, inference_time, speed, tokens_stats])
 
     chatRKLLM.queue()
     chatRKLLM.launch()
