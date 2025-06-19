@@ -235,7 +235,7 @@ if __name__ == "__main__":
  # INTERFACE
     # Create a Gradio interface
 
-    with gr.Blocks(fill_width=True, theme=theme, title="AI Chatbot") as chatRKLLM:
+    with gr.Blocks(fill_width=True, fill_height=True, theme=theme, title="AI Chatbot") as chatRKLLM:
 
         writehistory(LOGFILENAME, f'{datetime.datetime.now()}>> using model changeme\n================================================================================\n\n')
 
@@ -246,7 +246,7 @@ if __name__ == "__main__":
             #Displays the system resources
             sys_mon = gr.Textbox(value=resmon, every=resmon_frequency, lines=1, label="System Resources", container=False, show_label=False, scale=resmon_panel_scale, interactive=False)
 
-        with gr.Row(height=85): #, variant='panel'):
+        with gr.Row(): #, variant='panel'):
             available_models = available_models()
             model_dropdown = gr.Dropdown(choices=available_models, label="Select the Model to load", value="", allow_custom_value="True")
             statusBox = gr.Textbox(lines=3, container=False, show_label=False)
@@ -276,7 +276,7 @@ if __name__ == "__main__":
             with gr.Column(scale=3):
               with gr.Tabs():
                with gr.TabItem("Streaming Chat (seamless, no statistics)"):
-                txt2txt = gr.ChatInterface(fn=get_RKLLM_output, type="messages", stop_btn=False, save_history=True)
+                txt2txt = gr.ChatInterface(fn=get_RKLLM_output, type="messages", stop_btn=False, save_history=True, fill_width=True, fill_height=True)
                 txt2txt.chatbot.height = "60vh"
                 txt2txt.chatbot.resizable = True
                 txt2txt.saved_conversations.secret = "alefrisrkllmgradiochatbot060125"
@@ -301,7 +301,7 @@ if __name__ == "__main__":
                      reset_button = gr.Button("Reset Statistics and clear Chat", variant="primary")
 
                    with gr.Column(scale=4):
-                     chatbot = gr.Chatbot(type="messages", show_copy_button=True, avatar_images=['user.png', 'bot.png'], height=650, layout='bubble', resizable=True)
+                     chatbot = gr.Chatbot(type="messages", show_copy_button=True, avatar_images=['user.png', 'bot.png'], layout='bubble', resizable=True, height="60vh")
                      msg = gr.Textbox(lines=1, placeholder="Type your message here...", container=False, show_label=False)
                      clear = gr.ClearButton([msg, chatbot])
 
