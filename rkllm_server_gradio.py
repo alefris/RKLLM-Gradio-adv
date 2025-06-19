@@ -275,14 +275,14 @@ if __name__ == "__main__":
             # CHATBOT AREA
             with gr.Column(scale=3):
               with gr.Tabs():
-               with gr.TabItem("Live Stream Chat (Seamless, no Statistics)"):
+               with gr.TabItem("Streaming Chat (seamless, no statistics)"):
                 txt2txt = gr.ChatInterface(fn=get_RKLLM_output, type="messages", stop_btn=False, save_history=True)
                 txt2txt.chatbot.height = "60vh"
                 txt2txt.chatbot.resizable = True
                 txt2txt.saved_conversations.secret = "alefrisrkllmgradiochatbot060125"
                 txt2txt.saved_conversations.storage_key = "_saved_conversations"
 
-               with gr.TabItem("Chat with Statistics (no Streaming)"):
+               with gr.TabItem("Chat with Statistics (no streaming)"):
                  with gr.Row():
                    with gr.Column(scale=1):
                     # KPIs
@@ -298,9 +298,9 @@ if __name__ == "__main__":
                      inference_time.value = "N/A"
 
                      #Create the reset button
-                     reset_button = gr.Button("Reset Statistics and clear Chat with Statistics", variant="primary")
+                     reset_button = gr.Button("Reset Statistics and clear Chat", variant="primary")
 
-                   with gr.Column(scale=3):
+                   with gr.Column(scale=4):
                      chatbot = gr.Chatbot(type="messages", show_copy_button=True, avatar_images=['user.png', 'bot.png'], height=650, layout='bubble', resizable=True)
                      msg = gr.Textbox(lines=1, placeholder="Type your message here...", container=False, show_label=False)
                      clear = gr.ClearButton([msg, chatbot])
