@@ -53,12 +53,12 @@ model_configs = {
             "st_model_id": "c01zaut/Phi-3.5-mini-instruct-rk3588-1.1.2",
             "max_context_len": 4096,
             "max_new_tokens": 4096,
-            "top_k": 50,
-            "top_p": 0.95,
-            "temperature": 0.8,
-            "repeat_penalty": 1.35,
-            "frequency_penalty": 1.0,
-            "system_prompt": "You are a helpful assistant. Wait for the user to ask a question before responding."
+            "top_k": 1,
+            "top_p": 0.8,
+            "temperature": 0.7,
+            "repeat_penalty": 1.1,
+            "frequency_penalty": 0.9,
+            "system_prompt": "You are Phi 3.5 Mini, an artificial intelligence model trained by Microsoft. You are a helpful AI assistant."
         },
         "models": {
             "Phi3.5-Mini-Instruct": {"filename": "Phi-3.5-mini-instruct-rk3588-w8a8-opt-0-hybrid-ratio-0.0.rkllm"}
