@@ -49,12 +49,12 @@ Notes:
 | :-------- | :------- | :---------- | :------ |
 | max_context_len | Required | Maximum context size for the model | Must be ≤ model's max_context and in any case ≤ 16384 (constraint of rkllm library v1.2.1) |
 | max_new_tokens | Required | Max number of tokens to generate | Must be ≤ max_context_len |
-| temperature | Required | Sampling temperature, affecting the randomness of token selection | Should be between 0 and 2 |
-| top_k | Required | Top-K sampling parameter for token generation | Should be between 1 and 100 |
-| top_p | Required | Top-P (nucleus) sampling parameter | Should be between 0 and 1 |
-| repeat_penalty | Required | Penalty for repeating tokens in generation | Should be between 0 and 2 |
-| frequency_penalty | Required | Penalizes frequent tokens during generation | Should be between 0 and 2 |
-| presence_penalty | Required | Penalizes tokens based on their presence in the input | Set by default to 0 |
+| temperature | Required | Sampling temperature, affecting the randomness of token selection | Recommended range is between 0 and 2 |
+| top_k | Required | Top-K sampling parameter for token generation | Recommended range is between 1 and 100 |
+| top_p | Required | Top-P (nucleus) sampling parameter | Recommended range is between 0 and 1 |
+| repeat_penalty | Required | Penalty for repeating tokens in generation | Recommended range is between 0 and 2 |
+| frequency_penalty | Required | Penalizes frequent tokens during generation | Recommended range is between 0 and 2 |
+| presence_penalty | Required | Penalizes tokens based on their presence in the input | Recommended range is between -1 and 1 |
 
 LATEST UPDATES (branch:1.2.1):
 - Updated library librkllmrt.so to version 1.2.1
