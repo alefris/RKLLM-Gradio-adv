@@ -9,6 +9,7 @@ model_configs = {
             "temperature": 0.6,
             "repeat_penalty": 1.1,
             "frequency_penalty": 0.3,
+            "presence_penalty": 0.0,
             "system_prompt": "You are Llama 3.2, an artificial intelligence model trained by Meta. You are a helpful assistant."
             },
         "models": {
@@ -26,6 +27,7 @@ model_configs = {
             "temperature": 0.5,
             "repeat_penalty": 1.1,
             "frequency_penalty": 0.3,
+            "presence_penalty": 0.0,
             "system_prompt": "You are Cogito. You are a helpful assistant."
             },
         "models": {
@@ -42,6 +44,7 @@ model_configs = {
             "temperature": 0.1,
             "repeat_penalty": 1.35,
             "frequency_penalty": 1.0,
+            "presence_penalty": 0.0,
             "system_prompt": "You are a helpful AI assistant. Wait for the user to ask a question before responding."
         },
         "models": {
@@ -58,6 +61,7 @@ model_configs = {
             "temperature": 0.7,
             "repeat_penalty": 1.1,
             "frequency_penalty": 0.9,
+            "presence_penalty": 0.0,
             "system_prompt": "You are Phi 3.5 Mini, an artificial intelligence model trained by Microsoft. You are a helpful AI assistant."
         },
         "models": {
@@ -74,6 +78,7 @@ model_configs = {
             "temperature": 0.7,
             "repeat_penalty": 1.05,
             "frequency_penalty": 0.2,
+            "presence_penalty": 0.0,
             "system_prompt": "You are Qwen, created by Alibaba Cloud. You are a helpful assistant. /no_think"
         },
         "models": {
@@ -90,6 +95,7 @@ model_configs = {
             "temperature": 0.7,
             "repeat_penalty": 1.05,
             "frequency_penalty": 0.2,
+            "presence_penalty": 0.0,
             "system_prompt": "You are Qwen, created by Alibaba Cloud. You are a helpful assistant. /no_think"
         },
         "models": {
@@ -106,6 +112,7 @@ model_configs = {
             "temperature": 0.7,
             "repeat_penalty": 1.05,
             "frequency_penalty": 0.2,
+            "presence_penalty": 0.0,
             "system_prompt": "You are Qwen, created by Alibaba Cloud. You are a helpful assistant. /no_think"
         },
         "models": {
@@ -122,6 +129,7 @@ model_configs = {
             "temperature": 0.7,
             "repeat_penalty": 1.05,
             "frequency_penalty": 0.2,
+            "presence_penalty": 0.0,
             "system_prompt": "You are Qwen, created by Alibaba Cloud. You are a helpful assistant. /no_think"
         },
         "models": {
@@ -138,6 +146,7 @@ model_configs = {
             "temperature": 0.2,
             "repeat_penalty": 1.00,
             "frequency_penalty": 0.2,
+            "presence_penalty": 0.0,
             "system_prompt": "You are Qwen, created by Alibaba Cloud. You are a helpful assistant."
         },
         "models": {
@@ -158,6 +167,7 @@ model_configs = {
             "temperature": 0.7,
             "repeat_penalty": 1.05,
             "frequency_penalty": 0.2,
+            "presence_penalty": 0.0,
             "system_prompt": "You are Qwen, created by Alibaba Cloud. You are a helpful assistant."
         },
         "models": {
@@ -174,6 +184,7 @@ model_configs = {
             "temperature": 0.9,
             "repeat_penalty": 1.00,
             "frequency_penalty": 0.8,
+            "presence_penalty": 0.0,
             "system_prompt": "You are Qwen, created by Alibaba Cloud. You are a helpful assistant."
         },
         "models": {
@@ -190,6 +201,7 @@ model_configs = {
             "temperature": 0.9,
             "repeat_penalty": 1.00,
             "frequency_penalty": 0.8,
+            "presence_penalty": 0.0,
             "system_prompt": "You are Qwen, created by Alibaba Cloud. You are a helpful assistant."
         },
         "models": {
@@ -206,6 +218,7 @@ model_configs = {
             "temperature": 0.9,
             "repeat_penalty": 1.00,
             "frequency_penalty": 0.8,
+            "presence_penalty": 0.0,
             "system_prompt": "You are Qwen, created by Alibaba Cloud. You are a helpful assistant."
         },
         "models": {
@@ -222,6 +235,7 @@ model_configs = {
             "temperature": 0.9,
             "repeat_penalty": 1.00,
             "frequency_penalty": 0.8,
+            "presence_penalty": 0.0,
             "system_prompt": "You are a well-trained AI assistant, your name is Marco-o1. Created by AI Business of Alibaba International Digital Business Group.\n\n## IMPORTANT!!!!!!\nWhen you answer questions, your thinking should be done in <Thought>, and your results should be output in <Output>.\n<Thought> should be in English as much as possible, but there are 2 exceptions, one is the reference to the original text, and the other is that mathematics should use markdown format, and the output in <Output> needs to follow the language of the user input."
         },
         "models": {
@@ -238,6 +252,7 @@ model_configs = {
             "temperature": 0.1,
             "repeat_penalty": 1.05,
             "frequency_penalty": 0.5,
+            "presence_penalty": 0.0,
             "system_prompt": "You are a helpful assistant. Wait for the user to ask a question before responding."
         },
         "models": {
@@ -254,6 +269,7 @@ model_configs = {
             "temperature": 0.7,
             "repeat_penalty": 1.05,
             "frequency_penalty": 0.5,
+            "presence_penalty": 0.0,
             "system_prompt": "" #Gemma does not support system prompt
         },
         "models": {
@@ -270,6 +286,7 @@ model_configs = {
             "temperature": 0.7,
             "repeat_penalty": 1.05,
             "frequency_penalty": 0.5,
+            "presence_penalty": 0.0,
             "system_prompt": "" #Gemma does not support system prompt
         },
         "models": {
@@ -287,6 +304,7 @@ model_configs = {
             "temperature": 0.7,
             "repeat_penalty": 1.05,
             "frequency_penalty": 0.5,
+            "presence_penalty": 0.0,
             "system_prompt": "" #Gemma does not  support system prompt
         },
         "models": {
@@ -304,6 +322,7 @@ model_configs = {
             "temperature": 0.5,
             "repeat_penalty": 1.0005,
             "frequency_penalty": 0.2,
+            "presence_penalty": 0.0,
             "system_prompt": "You are InternLM, a helpful, honest, and harmless AI assistant developed by Shanghai AI Laboratory."
         },
         "models": {
@@ -322,6 +341,7 @@ model_configs = {
             "temperature": 0.5,
             "repeat_penalty": 1.0005,
             "frequency_penalty": 0.2,
+            "presence_penalty": 0.0,
             "system_prompt": "You are InternLM, a helpful, honest, and harmless AI assistant developed by Shanghai AI Laboratory."
         },
         "models": {
@@ -340,6 +360,7 @@ model_configs = {
             "temperature": 0.5,
             "repeat_penalty": 1.0005,
             "frequency_penalty": 0.2,
+            "presence_penalty": 0.0,
             "system_prompt": "You are InternLM, a helpful, honest, and harmless AI assistant developed by Shanghai AI Laboratory."
         },
         "models": {
@@ -356,6 +377,7 @@ model_configs = {
             "temperature": 0.7,
             "repeat_penalty": 1.2,
             "frequency_penalty": 0.8,
+            "presence_penalty": 0.0,
             "system_prompt": "You are DeepSeek Chat, a helpful, respectful and honest AI assistant developed by DeepSeek. If a question does not make any sense, or is not factually coherent, explain why instead of answering something not correct. If you don’t know the answer to a question, please don’t share false information."
         },
         "models": {
@@ -372,6 +394,7 @@ model_configs = {
             "temperature": 0.6,
             "repeat_penalty": 1.2,
             "frequency_penalty": 0.8,
+            "presence_penalty": 0.0,
             "system_prompt": "Wait for the user to ask a question before responding. If the response is lengthy, structure it well and summarize it in paragraphs. Unless the user requests otherwise, your response should be in the same language as the user's question."
         },
         "models": {
@@ -388,6 +411,7 @@ model_configs = {
             "temperature": 0.7,
             "repeat_penalty": 1.2,
             "frequency_penalty": 0.8,
+            "presence_penalty": 0.0,
             "system_prompt": "Wait for the user to ask a question before responding."
         },
         "models": {
@@ -404,6 +428,7 @@ model_configs = {
             "temperature": 0.7,
             "repeat_penalty": 1.2,
             "frequency_penalty": 0.8,
+            "presence_penalty": 0.0,
             "system_prompt": "Wait for the user to ask a question before responding."
         },
         "models": {
@@ -420,6 +445,7 @@ model_configs = {
             "temperature": 0.8,
             "repeat_penalty": 1.2,
             "frequency_penalty": 0.8,
+            "presence_penalty": 0.0,
             "system_prompt": "You are Deepseek Coder, a helpful, respectful and honest AI assistant developed by DeepSeek."
         },
         "models": {
@@ -436,6 +462,7 @@ model_configs = {
             "temperature": 0.8,
             "repeat_penalty": 1.2,
             "frequency_penalty": 0.8,
+            "presence_penalty": 0.0,
             "system_prompt": "You are Deepseek Coder, a helpful, respectful and honest AI assistant developed by DeepSeek."
         },
         "models": {
@@ -452,6 +479,7 @@ model_configs = {
             "temperature": 0.6,
             "repeat_penalty": 1.2,
             "frequency_penalty": 0.8,
+            "presence_penalty": 0.0,
             "system_prompt": "You are Deepseek Coder, a helpful, respectful and honest AI assistant developed by DeepSeek."
         },
         "models": {
@@ -468,6 +496,7 @@ model_configs = {
             "temperature": 0.7,
             "repeat_penalty": 1.2,
             "frequency_penalty": 0.8,
+            "presence_penalty": 0.0,
             "system_prompt": "You are MiniCPM, a helpful, respectful and honest AI assistant."
         },
         "models": {
@@ -484,6 +513,7 @@ model_configs = {
             "temperature": 0.8,
             "repeat_penalty": 1.2,
             "frequency_penalty": 0.8,
+            "presence_penalty": 0.0,
             "system_prompt": "You are ChatGLM3, a large language model trained by Zhipu.AI. Follow the user's instructions carefully. Respond using markdown."
         },
         "models": {

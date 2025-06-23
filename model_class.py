@@ -83,7 +83,7 @@ callback = callback_type(callback_impl)
 
 class RKLLMLoaderClass:
 #    def __init__(self, model="", qtype="w8a8", opt="1", hybrid_quant="1.0", maxnewtok=None, temp=None, freqpen=None, reppen=None, maxconlen=None, topk=None, topp=None, system_prompt=None):
-    def __init__(self, model="", qtype="w8a8", maxnewtok=None, temp=None, freqpen=None, reppen=None, maxconlen=None, topk=None, topp=None, system_prompt=None):
+    def __init__(self, model="", qtype="w8a8", maxnewtok=None, temp=None, freqpen=None, reppen=None, prespen=None, maxconlen=None, topk=None, topp=None, system_prompt=None):
         self.qtype = qtype
 #        self.opt = opt
         self.model = model
@@ -92,6 +92,7 @@ class RKLLMLoaderClass:
         self.temp = temp
         self.freqpen = freqpen
         self.reppen = reppen
+        self.prespen = prespen
         self.maxconlen = maxconlen
         self.topk = topk
         self.topp = topp
@@ -110,7 +111,7 @@ class RKLLMLoaderClass:
              self.system_prompt = self.base_config["system_prompt"]
             else:
              self.system_prompt = self.system_prompt
-             print("The System Prompt is " + str(self.system_prompt)) 
+             print("The System Prompt is set to: " + str(self.system_prompt)) 
             self.rkllm_param = RKLLMParam()
             self.rkllm_param.model_path = bytes(self.model_path, 'utf-8')
             if self.maxconlen is None:
@@ -150,8 +151,12 @@ class RKLLMLoaderClass:
             else:
              self.rkllm_param.frequency_penalty = self.freqpen
              print("The value of Frequency Penalty is set to " + str(self.rkllm_param.frequency_penalty))
+            if prespen is None:
+             self.rkllm_param.presence_penalty = self.base_config["presence_penalty"]
+            else:
+             self.rkllm_param.presence_penalty = self.prespen
+             print("The value of Presence Penalty is set to " + str(self.rkllm_param.presence_penalty))
              print()
-            self.rkllm_param.presence_penalty = 0.0
             self.rkllm_param.mirostat = 0
             self.rkllm_param.mirostat_tau = 5.0
             self.rkllm_param.mirostat_eta = 0.1

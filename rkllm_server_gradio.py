@@ -116,7 +116,7 @@ if __name__ == "__main__":
 
  
     # Helper function to define initializing model before class is declared
-    def initialize_model(model, max_tokens, temperature, freq_penalty, rep_penalty, max_conlen, top_k, top_p, sys_prompt):
+    def initialize_model(model, max_tokens, temperature, freq_penalty, rep_penalty, pres_penalty, max_conlen, top_k, top_p, sys_prompt):
         global rkllm_model
         try:
             if rkllm_model is not None:
@@ -133,7 +133,7 @@ if __name__ == "__main__":
         init_msg = "=========INITIALIZING=================================================================="
         print(init_msg)
         sys.stdout.flush()
-        rkllm_model = RKLLMLoaderClass(model=model, maxnewtok=max_tokens, temp=temperature, freqpen=freq_penalty, reppen=rep_penalty, maxconlen=max_conlen, topk=top_k, topp=top_p, system_prompt=sys_prompt )
+        rkllm_model = RKLLMLoaderClass(model=model, maxnewtok=max_tokens, temp=temperature, freqpen=freq_penalty, reppen=rep_penalty, prespen=pres_penalty, maxconlen=max_conlen, topk=top_k, topp=top_p, system_prompt=sys_prompt )
         model_init += f"RKLLM Model: {rkllm_model.model_name} has been initialized successfully!\n"
      # add instructions to enable or disable model thinking for Qwen-3 models
         if model_lower.startswith("qwen3") or model_lower.startswith("qwen-3"):
@@ -146,7 +146,7 @@ if __name__ == "__main__":
         output = model_init
         sys.stdout.flush()
         #return output
-        return rkllm_model.rkllm_param.max_new_tokens, rkllm_model.rkllm_param.temperature, rkllm_model.rkllm_param.frequency_penalty, rkllm_model.rkllm_param.repeat_penalty, rkllm_model.rkllm_param.max_context_len, rkllm_model.rkllm_param.top_k, rkllm_model.rkllm_param.top_p, rkllm_model.system_prompt,  output
+        return rkllm_model.rkllm_param.max_new_tokens, rkllm_model.rkllm_param.temperature, rkllm_model.rkllm_param.frequency_penalty, rkllm_model.rkllm_param.repeat_penalty, rkllm_model.rkllm_param.presence_penalty, rkllm_model.rkllm_param.max_context_len, rkllm_model.rkllm_param.top_k, rkllm_model.rkllm_param.top_p, rkllm_model.system_prompt,  output
 
 
     # Helper function to stream LLM output into the chat box
@@ -259,6 +259,7 @@ if __name__ == "__main__":
                 temperature = gr.Slider(minimum=0.0, maximum=2.0, value=0.0, step=0.1, label="Temperature")
                 freq_penalty = gr.Slider(minimum=0.0, maximum=2.0, value=0.0, step=0.1, label="Frequency Penalty")
                 rep_penalty = gr.Slider(minimum=0.00, maximum=2.00, value=0.00, step=0.01, label="Repetition Penalty")
+                pres_penalty = gr.Slider(minimum=-1.0, maximum=1.0, value=-1.0, step=0.1, label="Presence Penalty")
                 top_k = gr.Slider(minimum=1, maximum=100, value=0, step=1, label="Top-k Sampling")
                 top_p = gr.Slider(minimum=0.00, maximum=1.00, value=0.00, step=0.01, label="Top-p (Nucleus) Sampling")
                 sys_prompt = gr.Textbox(lines=2, label="System Prompt", container=True, show_label=True) 
@@ -267,9 +268,9 @@ if __name__ == "__main__":
                 unload_button = gr.Button("Unload Model", variant="primary", interactive=False)
                 unload_button.click(fn=unload_model, outputs=[statusBox]).then(fn=lambda: gr.update(interactive=False), inputs=None, outputs=unload_button)
 
-                rldbtn.click(fn=initialize_model, inputs=[model_dropdown, max_tokens, temperature, freq_penalty, rep_penalty, max_conlen, top_k, top_p, sys_prompt], outputs=[max_tokens, temperature, freq_penalty, rep_penalty, max_conlen, top_k, top_p, sys_prompt, statusBox]).then(fn=lambda: gr.update(interactive=True), inputs=None, outputs=unload_button).then(fn=lambda: gr.update(interactive=True), inputs=None, outputs=rldbtn)
+                rldbtn.click(fn=initialize_model, inputs=[model_dropdown, max_tokens, temperature, freq_penalty, rep_penalty, pres_penalty, max_conlen, top_k, top_p, sys_prompt], outputs=[max_tokens, temperature, freq_penalty, rep_penalty, pres_penalty, max_conlen, top_k, top_p, sys_prompt, statusBox]).then(fn=lambda: gr.update(interactive=True), inputs=None, outputs=unload_button).then(fn=lambda: gr.update(interactive=True), inputs=None, outputs=rldbtn)
 
-                model_dropdown.change(fn=initialize_model, inputs=model_dropdown, outputs=[max_tokens, temperature, freq_penalty, rep_penalty, max_conlen, top_k, top_p, sys_prompt, statusBox]).then(fn=lambda: gr.update(interactive=True), inputs=None, outputs=unload_button).then(fn=lambda: gr.update(interactive=True), inputs=None, outputs=rldbtn)
+                model_dropdown.change(fn=initialize_model, inputs=model_dropdown, outputs=[max_tokens, temperature, freq_penalty, rep_penalty, pres_penalty, max_conlen, top_k, top_p, sys_prompt, statusBox]).then(fn=lambda: gr.update(interactive=True), inputs=None, outputs=unload_button).then(fn=lambda: gr.update(interactive=True), inputs=None, outputs=rldbtn)
 
 
             # CHATBOT AREA
@@ -308,7 +309,7 @@ if __name__ == "__main__":
                      #define the reset button click to Reset the individual statistics variables and clear chatbot history
                      reset_button.click(fn=reset_statistics, inputs=[chatbot], outputs=[chatbot, ttft_seconds, inference_time, speed, tokens_stats])
 
-               def chat(message, history, temperature, freq_penalty, rep_penalty, max_tokens, max_conlen, top_k, top_p, sys_prompt):
+               def chat(message, history, temperature, freq_penalty, rep_penalty, pres_penalty, max_tokens, max_conlen, top_k, top_p, sys_prompt):
                     """
                     Get as an input the chatbot gradio type and the conversation history with hyperparameters
                     message -> str coming from the gradio textbox
@@ -316,6 +317,7 @@ if __name__ == "__main__":
                     temperature -> float, the temperature setting coming from a gradio slider
                     freq_penalty -> float, the frequency_penalty setting coming from a gradio slider
                     rep_penalty -> float, the repetition_penalty setting coming from a gradio slider
+                    pres_penalty -> float, the presence_penalty setting coming from a gradio slider
                     max_tokens -> int, the max_tokens setting coming from a gradio slider
                     max_conlen -> int, the max_context_len setting coming from a gradio slider
                     top_k -> int, the top_k setting coming from a gradio slider
@@ -399,7 +401,7 @@ TOTAL Tokens: {totaltokens}
                     writehistory(LOGFILENAME, tosave)
 
                clear.click(lambda: ([], ""), None, [chatbot, msg])
-               msg.submit(chat, [msg, chatbot, temperature, freq_penalty, rep_penalty, max_tokens, max_conlen, top_k, top_p, sys_prompt], [chatbot, msg, ttft_seconds, inference_time, speed, tokens_stats])
+               msg.submit(chat, [msg, chatbot, temperature, freq_penalty, rep_penalty, pres_penalty, max_tokens, max_conlen, top_k, top_p, sys_prompt], [chatbot, msg, ttft_seconds, inference_time, speed, tokens_stats])
 
     chatRKLLM.queue()
     chatRKLLM.launch()
